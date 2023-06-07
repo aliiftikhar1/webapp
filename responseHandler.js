@@ -6,13 +6,13 @@ global._handleResponse = function (req, res, err, response) {
             ok: false,
             code: err.code || "BadRequest",
             message: err.message || err,
-            result: ""
+            result: null
         })
     }
     return res.status(200).json({
         status: 'success',
         ok: true,
-        code: 200,
+        code: '200',
         message: '',
         result: response,
     })

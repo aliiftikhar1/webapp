@@ -13,7 +13,7 @@ const userRegister = async (req, res) => {
 
 const verifyEmail = async (req, res) => {
     try {
-        let userDoc = await dataValidator.validateEmailVerificationObj(req.query);
+        let userDoc = await dataValidator.validateEmailVerificationObj(req.body);
         const response = await authProvider.emailVerification(userDoc);
         return _handleResponse(req, res, null, response);
     } catch (e) {

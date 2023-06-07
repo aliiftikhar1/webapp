@@ -5,9 +5,8 @@ const jwt = require('../utils/authMiddleware');
 
 
  router.post('/register', authController.userRegister);
- router.get('/verifyEmail', authController.verifyEmail);
+ router.post('/verifyEmail', authController.verifyEmail);
  router.post('/login', authController.login);
- router.get('/forgetPassword', authController.forgetPassword);
- router.get('/logout',jwt.verifyJWT, authController.logout);
+ router.post('/forgetPassword', authController.forgetPassword);
 
 module.exports = router;
