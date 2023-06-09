@@ -22,6 +22,9 @@ const register = async (userDoc) => {
         else if(userDoc.role=='U'){
             userDoc.role=Roles.Roles.User;
         }
+        else if(userDoc.role=='V'){
+            userDoc.role=Roles.Roles.Vendor;
+        }        
         else{
             throw message.error.INVALID_ROLE;
         }
@@ -86,6 +89,9 @@ const login = async (userDoc) => {
         else if(userDoc.role=='U'){
             userDoc.role=Roles.Roles.User;
         }
+        else if(userDoc.role=='V'){
+            userDoc.role=Roles.Roles.Vendor;
+        }
         let { email,password,role} = userDoc;
 
         let user = await dbInstanceUser.getUserByEmailAndRole(email,role);
@@ -133,6 +139,9 @@ const forgetPassword = async (userDoc) => {
         }
         else if(userDoc.role=='U'){
             userDoc.role=Roles.Roles.User;
+        }
+        else if(userDoc.role=='V'){
+            userDoc.role=Roles.Roles.Vendor;
         }
         else{
             throw message.error.INVALID_ROLE;

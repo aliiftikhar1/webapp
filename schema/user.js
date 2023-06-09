@@ -6,7 +6,7 @@ var userSchema = new Schema(
         firstName: String,
         lastName: String,
         email: { type: String, required: [true, 'email not found'] },
-        password: {type:String,minlength:8},
+        password: {type:String,minlength:3},
         role: {type:String,required: [true, 'role not found']},
         verificationCode: String,
         token: String,

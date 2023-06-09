@@ -4,12 +4,12 @@ const { ADMIN_MAIL } = require("../config/constant");
 const sendEmail = async (email, subject, text) => {
   try {
     const transporter = nodemailer.createTransport({
-      service:process.env.SERVICE ,
-      port: process.env.PORT ,
-      host:process.env.host,
+      service:'gmail' ,
+      port: 465 ,
+      host: 'smtp.gmail.com',
       auth: {
-        user: process.env.USER,
-        pass: process.env.PASS,
+        user: 'medicinepc23@gmail.com',
+        pass: 'tcnyyltgfgttsueq',
       },
     });
     //console.log(transporter);
