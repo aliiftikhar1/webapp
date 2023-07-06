@@ -8,6 +8,7 @@ class Routes {
     /* creating app Routes starts */
     appRoutes() {
         this.app.use('/auth', trimRequest.all, require("./auth"));
+        this.app.use('/dashboard', trimRequest.all, require("./dashboard"));
     }
     
 

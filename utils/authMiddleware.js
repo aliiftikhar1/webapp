@@ -85,48 +85,6 @@ async function verifyJWT(req, res, next) {
     }
 }
 
-async function verifyDashboardJWT(req, res, next) {
-    try {
-        if (req && req.headers && req.headers.authorization) {
-            let path = req.route.path.trim();
-            path = path.slice(1, path.length);
-            path = path.toLowerCase();
-            JWT.verify(req.headers.authorization, constant.JWT_PRIVATE_KEY, async (err, decoded) => {
-                try {
-                    if (err) {
-                        throw (err)
-                    }
-                    let currentTimestamp = Math.floor(Date.now() / 1000) + (60 * 60)
-
-                    if (currentTimestamp > decoded.exp) {
-                        return _handleResponse(req, res, "JWT expired, Please login again")
-                    }
-                    // let authorised = await isAuthorised(decoded, path)
-
-                    // if (!authorised) {
-                    //     throw Error("Permission Denied, User not authorised to perform this operation")
-                    // }
-                    req.data = decoded.data;
-                    req._id = decoded.data._id;
-                    if (req.body) {
-                        req.body._id = decoded.data._id;
-                    }
-                    next();
-                } catch (e) {
-                    if (e == 'JsonWebTokenError: invalid signature' || e == 'TokenExpiredError: jwt expired'){
-                        return _handleResponse(req, res, "JWT expired or incorrect. Please login again")
-                    }
-                    next();
-                }
-            });
-        } else {
-            next();
-        }
-    } catch (e) {
-        console.log("ERROR :verifyJWT :::::", e)
-        next();
-    }
-}
 
 async function decodeJWT() {
     try {
@@ -137,19 +95,6 @@ async function decodeJWT() {
     }
 }
 
-// async function isAuthorised(decodedJWT, path, imageid) {
-//     const { role } = decodedJWT.data;
-//     if (role === ROLE_ADMIN) {
-//         return ADMIN_ROUTES.includes(path)
-//     } else if (role == ROLE_INVESTOR) {
-//         return INVESTOR_ROUTES.includes(path)
-//     } else if (role === ROLE_PROPERTY_OWNER) {
-//         return ROLE_PROPERTY_OWNER_ROUTES.includes(path)
-//     } else {
-//         return false
-//     }
-// }
-
 module.exports = {
     generateJWT,
     generateTokenJWT,
@@ -157,5 +102,5 @@ module.exports = {
     verifyTokenJWT,
     verifyJWT,
     generateRefreshToken,
-    verifyDashboardJWT
+    
 }
