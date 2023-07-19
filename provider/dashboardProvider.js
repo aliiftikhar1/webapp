@@ -11,7 +11,6 @@ let getUsersByRole = async (role) => {
     try {
         //check if user exist with same email
         let users = await dbInstanceUser.getUserByRole(role); 
-     console.log(users);    
         return users  
     } catch (e) {
         console.error('ERROR ::: dashboardProvider -> getUsersData ::: ', e);
