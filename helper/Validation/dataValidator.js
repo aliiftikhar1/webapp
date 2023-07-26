@@ -90,11 +90,13 @@ module.exports = {
   },
 
   validateStoreObj: async function (dataObj) {
-    let { storeName, vendorId, cityName } = dataObj;
+    let { storeName, vendorId, cityName, address, phoneNo } = dataObj;
     const v = new Validator(dataObj, {
       storeName: "string|required",
       vendorId: "string|required",
       cityName: "string|required",
+      address: "string|required",
+      phoneNo: "string|required",
     });
     let matched = await v.check();
     if (!matched) {
@@ -104,14 +106,17 @@ module.exports = {
       storeName: storeName,
       vendorId: vendorId,
       cityName: cityName,
+      address: address,
+      phoneNo: phoneNo,
     };
   },
 
   validateStoreVerificationObj: async function (dataObj) {
-    let { storeID, verificationCode } = dataObj;
+    let { storeID, verificationCode, vendorId } = dataObj;
     const v = new Validator(dataObj, {
       storeID: "string|required",
       verificationCode: "string|required",
+      vendorId: "string|required",
     });
     let matched = await v.check();
     if (!matched) {
@@ -120,6 +125,7 @@ module.exports = {
     return {
       storeID: storeID,
       verificationCode: verificationCode,
+      vendorId: vendorId,
     };
   },
 

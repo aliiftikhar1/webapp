@@ -48,9 +48,7 @@ class DbHelperStore {
   async getStoresByVendorId(vendorId) {
     try {
       await this.connect();
-      let storeData = await StoreModel.find({ vendorId }).select(
-        "storeName cityName createdDate"
-      );
+      let storeData = await StoreModel.find({ vendorId });
       return storeData;
     } catch (e) {
       console.error("DbHelper Error while getStoreByVendor ::: ", e);
