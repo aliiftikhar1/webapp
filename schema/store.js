@@ -9,7 +9,6 @@ var storeSchema = new Schema(
     address: String,
     phoneNo: String,
     storeId: String,
-    verificationCode: String,
     createdDate: { type: Date, default: Date.now },
     updatedDate: { type: Date, default: Date.now },
     active: { type: Boolean, default: false },

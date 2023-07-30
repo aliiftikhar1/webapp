@@ -21,13 +21,6 @@ const addStore = async (storeDoc) => {
     if (storeExists) {
       throw message.error.STORE_WITH_NAME_ALREADY_EXIST;
     }
-    let code = require("crypto").randomBytes(3).toString("hex");
-    const message1 = `${PROJECT_NAME} store verification code : ${code}`;
-    await sendEmail(vendorExists.email, "Verify Email", message1);
-    await Promise.all([sendEmail]);
-    console.log("storeProvider -> addStore ::: verification mail sent");
-    storeDoc.verificationCode = code;
-    //  Create the store
     let createdStore = await dbInstance.insertDocument(
       COLLECTIONS.STORE_COLLECTION_NAME,
       storeDoc
@@ -45,10 +38,6 @@ const storeVerification = async (storeDoc) => {
     if (store.active == true) {
       throw message.error.STORE_ALREADY_VERIFIED;
     }
-    if (store.verificationCode != storeDoc.verificationCode) {
-      throw message.error.WRONG_STORE_VERIFICATION_CODE;
-    }
-
     let updatedStore = await dbInstance.updateDocument(
       COLLECTIONS.STORE_COLLECTION_NAME,
       store._id,
