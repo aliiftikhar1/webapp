@@ -6,6 +6,8 @@ var storeSchema = new Schema(
     storeName: { type: String, required: [true, "store name not found"] },
     vendorId: { type: String, required: [true, "vendor id  not found"] },
     cityName: String,
+    address: String,
+    phoneNo: String,
     storeId: String,
     verificationCode: String,
     createdDate: { type: Date, default: Date.now },
