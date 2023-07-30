@@ -115,7 +115,6 @@ module.exports = {
     let { storeID, verificationCode, vendorId } = dataObj;
     const v = new Validator(dataObj, {
       storeID: "string|required",
-      verificationCode: "string|required",
       vendorId: "string|required",
     });
     let matched = await v.check();
