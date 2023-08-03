@@ -129,11 +129,13 @@ module.exports = {
   },
 
   validateUpdateStoreObj: async function (dataObj) {
-    let { storeID, storeName, cityName } = dataObj;
+    let { storeID, storeName, cityName, address, phoneNo } = dataObj;
     const v = new Validator(dataObj, {
       storeID: "string|required",
       storeName: "string|required",
       cityName: "string|required",
+      address: "string|required",
+      phoneNo: "string|required",
     });
     let matched = await v.check();
     if (!matched) {
@@ -143,6 +145,8 @@ module.exports = {
       storeID: storeID,
       storeName: storeName,
       cityName: cityName,
+      address: address,
+      phoneNo: phoneNo,
     };
   },
 
