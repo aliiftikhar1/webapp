@@ -63,7 +63,6 @@ const storeUpdation = async (storeDoc) => {
         cityName: storeDoc.cityName,
         address: storeDoc.address,
         phoneNo: storeDoc.phoneNo,
-        updatedDate: Date.now,
       }
     );
     console.log("storeProvider -> storeUpdation ::: Store Updated");
