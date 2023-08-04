@@ -19,7 +19,16 @@ class DbHelperStore {
       }
     }
   }
-
+  async getStores() {
+    try {
+      await this.connect();
+      let storeData = await StoreModel.find()
+      return storeData;
+    } catch (e) {
+      console.error("DbHelper Error while getStores ::: ", e);
+      throw e;
+    }
+  }
   async getStoreByName(name) {
     try {
       await this.connect();

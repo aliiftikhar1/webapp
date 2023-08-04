@@ -19,6 +19,15 @@ const verifyStore = async (req, res) => {
     return _handleResponse(req, res, e);
   }
 };
+
+const getAllStore = async (req, res) => {
+  try {
+    const response = await storeProvider.getAllStores();
+    return _handleResponse(req, res, null, response);
+  } catch (e) {
+    return _handleResponse(req, res, e);
+  }
+};
 const updateStore = async (req, res) => {
   try {
     let storeDoc = await dataValidator.validateUpdateStoreObj(req.body);
@@ -29,10 +38,10 @@ const updateStore = async (req, res) => {
   }
 };
 
-const getAllStore = async (req, res) => {
+const getAllVendorStore = async (req, res) => {
   try {
     let storeDoc = await dataValidator.validateAllStoreObj(req.body);
-    const response = await storeProvider.getAllStores(storeDoc);
+    const response = await storeProvider.getAllVendorsStores(storeDoc);
     return _handleResponse(req, res, null, response);
   } catch (e) {
     return _handleResponse(req, res, e);
@@ -43,4 +52,5 @@ module.exports = {
   verifyStore,
   updateStore,
   getAllStore,
+  getAllVendorStore,
 };

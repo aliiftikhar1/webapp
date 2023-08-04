@@ -112,10 +112,9 @@ module.exports = {
   },
 
   validateStoreVerificationObj: async function (dataObj) {
-    let { storeID, verificationCode, vendorId } = dataObj;
+    let { storeID,  } = dataObj;
     const v = new Validator(dataObj, {
       storeID: "string|required",
-      vendorId: "string|required",
     });
     let matched = await v.check();
     if (!matched) {
@@ -123,8 +122,6 @@ module.exports = {
     }
     return {
       storeID: storeID,
-      verificationCode: verificationCode,
-      vendorId: vendorId,
     };
   },
 

@@ -26,7 +26,7 @@ class DbHelperUser {
       await this.connect();
       let userData = await UserModel.find({
         role: role,
-      },).select('firstName lastName email role createdDate',);
+      }).select("firstName lastName email role createdDate");
       return userData;
     } catch (e) {
       console.error("DbHelper Error while getUserByRole ::: ", e);
@@ -40,6 +40,18 @@ class DbHelperUser {
       let userData = await UserModel.findOne({
         _id: new mongoose.Types.ObjectId(_id),
       });
+      return userData;
+    } catch (e) {
+      console.error("DbHelper Error while getUserById ::: ", e);
+      throw e;
+    }
+  }
+  async getUserByIdOnly(_id) {
+    try {
+      await this.connect();
+      let userData = await UserModel.findOne({
+        _id: new mongoose.Types.ObjectId(_id),
+      }).select("firstName lastName email role createdDate");
       return userData;
     } catch (e) {
       console.error("DbHelper Error while getUserById ::: ", e);

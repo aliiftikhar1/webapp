@@ -73,8 +73,7 @@ const storeUpdation = async (storeDoc) => {
   }
 };
 
-
-const getAllStores = async (storeDoc) => {
+const getAllVendorsStores = async (storeDoc) => {
   try {
     let stores = await dbInstanceStore.getStoresByVendorId(storeDoc.vendorId);
     console.log("storeProvider -> getAllStores ::: Stores");
@@ -84,9 +83,33 @@ const getAllStores = async (storeDoc) => {
     throw Error(e);
   }
 };
+
+const getAllStores = async () => {
+  try {
+    let stores = await dbInstanceStore.getStores();
+    console.log("storeProvider -> getAllStores ::: Stores");
+    var data = [];
+    for(var store of stores)
+    {
+      let vendor = await dbInstanceUser.getUserByIdOnly(store.vendorId);
+      let result = {
+        storeInfo: store,
+        vendorInfo: vendor,
+      };
+      data.push(result);
+    }
+
+    
+
+    return data;
+  } catch (e) {
+    throw Error(e);
+  }
+};
 module.exports = {
   addStore,
   storeVerification,
   storeUpdation,
+  getAllVendorsStores,
   getAllStores,
 };
