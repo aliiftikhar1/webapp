@@ -13,8 +13,8 @@ module.exports = {
     INVALID_VENDOR_ID: "Vendor id not exist",
     STORE_WITH_NAME_ALREADY_EXIST: "Store already exist",
     STORE_ALREADY_VERIFIED: "Store already verified",
-    WRONG_STORE_VERIFICATION_CODE:
-      "Store could not be verified, Please enter correct verification code!",
+    CATEGORY_ALREADY_EXIST: "Category already exist",
+    TYPE_ALREADY_EXIST: "type already exist",
 
     BadRequest: {
       status: 400,

@@ -5,6 +5,8 @@ const { COLLECTIONS } = require("../../config/constant");
 const messages = require("../../config/messages");
 const constant = require("../../config/constant");
 const { StoreModel } = require("../../schema/store");
+const { CategoryModel } = require("../../schema/category");
+const { TypeModel } = require("../../schema/type");
 
 class DbHelper {
   async connect() {
@@ -36,6 +38,10 @@ class DbHelper {
         modelInstance = new UserModel(docObj);
       } else if (collection == COLLECTIONS.STORE_COLLECTION_NAME) {
         modelInstance = new StoreModel(docObj);
+      } else if (collection == COLLECTIONS.CATEGORIES_COLLECTION_NAME) {
+        modelInstance = new CategoryModel(docObj);
+      } else if (collection == COLLECTIONS.TYPE_COLLECTION_NAME) {
+        modelInstance = new TypeModel(docObj);
       } else {
         throw Error(messages.error.INVALID_COLLECTION);
       }
@@ -76,6 +82,10 @@ class DbHelper {
         Model = UserModel;
       } else if (collection == COLLECTIONS.STORE_COLLECTION_NAME) {
         Model = StoreModel;
+      } else if (collection == COLLECTIONS.CATEGORIES_COLLECTION_NAME) {
+        Model = CategoryModel;
+      } else if (collection == COLLECTIONS.TYPE_COLLECTION_NAME) {
+        Model = TypeModel;
       } else {
         throw Error(messages.error.INVALID_COLLECTION);
       }

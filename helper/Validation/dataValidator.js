@@ -112,7 +112,7 @@ module.exports = {
   },
 
   validateStoreVerificationObj: async function (dataObj) {
-    let { storeID,  } = dataObj;
+    let { storeID } = dataObj;
     const v = new Validator(dataObj, {
       storeID: "string|required",
     });
@@ -151,7 +151,6 @@ module.exports = {
     let { vendorId } = dataObj;
     const v = new Validator(dataObj, {
       vendorId: "string|required",
-
     });
     let matched = await v.check();
     if (!matched) {
@@ -159,6 +158,70 @@ module.exports = {
     }
     return {
       vendorId: vendorId,
+    };
+  },
+
+  // Category
+  validateCategoryObj: async function (dataObj) {
+    let { categoryName } = dataObj;
+    const v = new Validator(dataObj, {
+      categoryName: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      categoryName: categoryName,
+      categoryCode: null,
+    };
+  },
+
+  validateCategoryUpdateObj: async function (dataObj) {
+    let { categoryId, categoryName } = dataObj;
+    const v = new Validator(dataObj, {
+      categoryId: "string|required",
+      categoryName: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      categoryId: categoryId,
+      categoryName: categoryName,
+    };
+  },
+
+  // Type
+  validateTypeObj: async function (dataObj) {
+    let { typeName } = dataObj;
+    const v = new Validator(dataObj, {
+      typeName: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      typeName: typeName,
+      typeCode: null,
+    };
+  },
+
+  validateTypeUpdateObj: async function (dataObj) {
+    let { typeId, typeName } = dataObj;
+    const v = new Validator(dataObj, {
+      typeId: "string|required",
+      typeName: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      typeId: typeId,
+      typeName: typeName,
     };
   },
 };

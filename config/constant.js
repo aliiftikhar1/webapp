@@ -7,6 +7,8 @@ module.exports = {
     USER_COLLECTION_NAME: "users",
     STORE_COLLECTION_NAME: "stores",
     CITY_COLLECTION_NAME: "cities",
+    CATEGORIES_COLLECTION_NAME: "categories",
+    TYPE_COLLECTION_NAME: "types",
   },
 
   PROJECT_NAME: credentials.projectName,
