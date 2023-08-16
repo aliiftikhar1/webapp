@@ -12,6 +12,7 @@ class Routes {
     this.app.use("/store", trimRequest.all, require("./store"));
     this.app.use("/category", trimRequest.all, require("./categories"));
     this.app.use("/type", trimRequest.all, require("./type"));
+      this.app.use("/medicine", trimRequest.all, require("./medicine"));
   }
 
   routesConfig() {

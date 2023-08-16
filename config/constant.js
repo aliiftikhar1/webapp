@@ -9,6 +9,7 @@ module.exports = {
     CITY_COLLECTION_NAME: "cities",
     CATEGORIES_COLLECTION_NAME: "categories",
     TYPE_COLLECTION_NAME: "types",
+    MEDICINE_COLLECTION_NAME: "medicines",
   },
 
   PROJECT_NAME: credentials.projectName,

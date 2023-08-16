@@ -7,6 +7,7 @@ const constant = require("../../config/constant");
 const { StoreModel } = require("../../schema/store");
 const { CategoryModel } = require("../../schema/category");
 const { TypeModel } = require("../../schema/type");
+const { MedicineModel } = require("../../schema/medicine");
 
 class DbHelper {
   async connect() {
@@ -42,6 +43,8 @@ class DbHelper {
         modelInstance = new CategoryModel(docObj);
       } else if (collection == COLLECTIONS.TYPE_COLLECTION_NAME) {
         modelInstance = new TypeModel(docObj);
+      } else if (collection == COLLECTIONS.MEDICINE_COLLECTION_NAME) {
+        modelInstance = new MedicineModel(docObj);
       } else {
         throw Error(messages.error.INVALID_COLLECTION);
       }
@@ -86,6 +89,8 @@ class DbHelper {
         Model = CategoryModel;
       } else if (collection == COLLECTIONS.TYPE_COLLECTION_NAME) {
         Model = TypeModel;
+      } else if (collection == COLLECTIONS.MEDICINE_COLLECTION_NAME) {
+        Model = MedicineModel;
       } else {
         throw Error(messages.error.INVALID_COLLECTION);
       }

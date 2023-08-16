@@ -15,6 +15,7 @@ module.exports = {
     STORE_ALREADY_VERIFIED: "Store already verified",
     CATEGORY_ALREADY_EXIST: "Category already exist",
     TYPE_ALREADY_EXIST: "type already exist",
+    MEDICINE_ALREADY_EXIST: "medicine already exist please edit it through update option",
 
     BadRequest: {
       status: 400,

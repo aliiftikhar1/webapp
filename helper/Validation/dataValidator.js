@@ -1,5 +1,5 @@
-const { Validator } = require('node-input-validator');
-const message = require('../../config/messages');
+const { Validator } = require("node-input-validator");
+const message = require("../../config/messages");
 
 module.exports = {
   validateRegisterObj: async function (dataObj) {
@@ -222,6 +222,126 @@ module.exports = {
     return {
       typeId: typeId,
       typeName: typeName,
+    };
+  },
+
+  // Medicine
+  validateMedicineObj: async function (dataObj) {
+    let {
+      medicineName,
+      companyName,
+      storeId,
+      categoryID,
+      typeID,
+      quantity,
+      price,
+      discount,
+    } = dataObj;
+    const v = new Validator(dataObj, {
+      medicineName: "string|required",
+      companyName: "string|required",
+      storeId: "string|required",
+      categoryID: "string|required",
+      typeID: "string|required",
+      quantity: "string|required",
+      price: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      medicineName: medicineName,
+      companyName: companyName,
+      storeId: storeId,
+      categoryID: categoryID,
+      typeID: typeID,
+      quantity: quantity,
+      price: price,
+      storeId: storeId,
+      discount: discount,
+    };
+  },
+
+  validateUpdateMedicineObj: async function (dataObj) {
+    let {
+      medicineId,
+      medicineName,
+      companyName,
+      storeId,
+      categoryID,
+      typeID,
+      quantity,
+      price,
+      discount,
+    } = dataObj;
+    const v = new Validator(dataObj, {
+      medicineId: "string|required",
+      medicineName: "string|required",
+      companyName: "string|required",
+      storeId: "string|required",
+      categoryID: "string|required",
+      typeID: "string|required",
+      quantity: "string|required",
+      price: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      medicineId: medicineId,
+      medicineName: medicineName,
+      companyName: companyName,
+      storeId: storeId,
+      categoryID: categoryID,
+      typeID: typeID,
+      quantity: quantity,
+      price: price,
+      storeId: storeId,
+      discount: discount,
+    };
+  },
+
+  validateGetMedicineByStoreObj: async function (dataObj) {
+    let { storeId } = dataObj;
+    const v = new Validator(dataObj, {
+      storeId: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      storeId: storeId,
+    };
+  },
+
+  validateGetMedicineByCategoryObj: async function (dataObj) {
+    let { categoryID } = dataObj;
+    const v = new Validator(dataObj, {
+      categoryID: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      categoryID: categoryID,
+    };
+  },
+
+  validateGetMedicineByTypeObj: async function (dataObj) {
+    let { typeID } = dataObj;
+    const v = new Validator(dataObj, {
+      typeID: "string|required",
+    });
+    let matched = await v.check();
+    if (!matched) {
+      throw v.errors;
+    }
+    return {
+      typeID: typeID,
     };
   },
 };
