@@ -25,9 +25,17 @@ class Server {
     this.app.use('/', Routes);  // Ensure this line correctly points to your routes
   }
 
+  errorHandler(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  }
+
   startTheServer() {
     this.appConfig();
     this.includeRoutes();
+
+    // Error handling middleware
+    this.app.use(this.errorHandler);
 
     const port = process.env.NODE_SERVER_PORT || 3000;
     const host = process.env.NODE_SERVER_HOST || '0.0.0.0';
