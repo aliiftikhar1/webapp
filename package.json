@@ -29,7 +29,7 @@
     "trim-request": "^1.0.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.1.4"
   },
   "keywords": []
 }
