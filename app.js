@@ -1,44 +1,41 @@
-/* eslint-disable no-console */
+// app.js
 const express = require('express');
 const http = require('http');
+const cors = require('cors');
 
 const AppConfig = require('./config/app-config');
 const Routes = require('./routes');
 
 class Server {
-    constructor() {
-        this.app = express();
-        this.app.use(require("cors")({
-            // "origin": ALLOWED_ORIGINS,
-            // "credentials": true,
-            "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
-        }));
-        this.app.use(express.json({ limit: '50mb' }));
-        this.app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-        this.http = http.Server(this.app);
-    }
+  constructor() {
+    this.app = express();
+    this.app.use(cors({
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+    }));
+    this.app.use(express.json({ limit: '50mb' }));
+    this.app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+    this.http = http.Server(this.app);
+  }
 
-    appConfig() {
-        new AppConfig(this.app).includeConfig();
-    }
+  appConfig() {
+    new AppConfig(this.app).includeConfig();
+  }
 
-    /* Including app Routes starts */
-    includeRoutes() {
-            new Routes(this.app).routesConfig();
-        }
-        /* Including app Routes ends */
+  includeRoutes() {
+    this.app.use('/', Routes);  // Ensure this line correctly points to your routes
+  }
 
-    startTheServer() {
-        this.appConfig();
-        this.includeRoutes();
+  startTheServer() {
+    this.appConfig();
+    this.includeRoutes();
 
-        const port = process.env.NODE_SERVER_PORT || 3000;
-        const host = process.env.NODE_SERVER_HOST || '0.0.0.0';
+    const port = process.env.NODE_SERVER_PORT || 3000;
+    const host = process.env.NODE_SERVER_HOST || '0.0.0.0';
 
-        this.http.listen(port, host, () => {
-            console.log(`Listening on http://${host}:${port}`);
-        });
-    }
+    this.http.listen(port, host, () => {
+      console.log(`Listening on http://${host}:${port}`);
+    });
+  }
 }
 
 module.exports = new Server();

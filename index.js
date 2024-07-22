@@ -1,7 +1,9 @@
-// const DotEnv = require('dotenv');
+// routes/index.js
+const express = require('express');
+const router = express.Router();
 
-// DotEnv.config();
+router.get('/', (req, res) => {
+  res.send('Hello, Vercel!');
+});
 
-const Server = require('./app');
-
-Server.startTheServer();
+module.exports = router;
