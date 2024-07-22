@@ -1,10 +1,9 @@
-// app.js
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
 
 const AppConfig = require('./config/app-config');
-const Routes = require('./routes');
+const Routes = require('./routes');  // Ensure this path is correct
 
 class Server {
   constructor() {
@@ -22,20 +21,13 @@ class Server {
   }
 
   includeRoutes() {
-    this.app.use('/', Routes);  // Ensure this line correctly points to your routes
-  }
-
-  errorHandler(err, req, res, next) {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
+    const routes = new Routes(this.app);  // Instantiate the Routes class with 'new'
+    routes.routesConfig();
   }
 
   startTheServer() {
     this.appConfig();
     this.includeRoutes();
-
-    // Error handling middleware
-    this.app.use(this.errorHandler);
 
     const port = process.env.NODE_SERVER_PORT || 3000;
     const host = process.env.NODE_SERVER_HOST || '0.0.0.0';
